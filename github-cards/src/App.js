@@ -1,26 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
+
+import GitCard from './GitCard'
+import Header from './Header'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      gitCard: []
+    }
+  }
+
+  componentDidMount() {
+    this.fetchGitCard();
+  }
+
+  fetchGitCard = () => {
+    fetch('https://api.github.com/users/mcgowent')
+      .then(response => {
+        return response.json();
+      })
+      .then(gitData => this.setState({ gitCard: gitData }))
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+
+  render() {
+    return (
+      <div className="App">
+        <Header />
+        <GitCard data={this.state.gitCard} />
+      </div>
+    );
+  }
 }
 
 export default App;
