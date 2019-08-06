@@ -1,3 +1,7 @@
+a {
+  text-decoration: none;
+}
+
 .App {
   display:flex;
   flex-direction: column;
@@ -5,13 +9,31 @@
   align-items: center;
 }
 
+.mid_bar{
+  color:white;
+  background:rgb(100, 115, 136);
+  width: 100vw;
+  text-align:center;  
+  padding:10px;
+}
+
+.flex_wrap{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
 .github_name{
-  /* display:flex;
-  justify-content: flex-start; */
+  font-weight: 200;
+
   margin-left:10px;
-  position: fixed;
+  position: relative;
+  top: 45px;
   color:rgb(255, 255, 255);
 }
+
 
 .card {
   margin-top:10px;
@@ -29,8 +51,30 @@
   
 }
 
+.card_friends {
+
+  margin-top:10px;
+
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 200px;
+  border-radius: 5px;
+  background:rgb(76, 95, 121);
+  color:white;
+}
+
+.card_friends img {
+  border-radius:1000px;
+  margin-top:20px;
+  border: 2px solid white;
+}
+
+
 .card img {
-  border-radius:250px;
+  border-radius:1000px;
   margin-top:20px;
   border: 2px solid white;
 }
