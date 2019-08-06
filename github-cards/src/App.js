@@ -1,7 +1,6 @@
 import React from 'react';
 
 import GitCard from './GitCard'
-import Header from './Header'
 import FriendsList from './FriendsList'
 import './App.css';
 
@@ -10,7 +9,8 @@ class App extends React.Component {
     super()
     this.state = {
       gitCard: [],
-      gitFriends: []
+      gitFriends: [],
+      githubUser: "mcgowent"
     }
   }
 
@@ -19,7 +19,7 @@ class App extends React.Component {
   }
 
   fetchGitCard = () => {
-    fetch('https://api.github.com/users/mcgowent')
+    fetch(`https://api.github.com/users/${this.state.githubUser}`)
       .then(response => {
         return response.json();
       })
@@ -27,7 +27,7 @@ class App extends React.Component {
       .catch(err => {
         console.log(err)
       })
-    fetch('https://api.github.com/users/mcgowent/followers')
+    fetch(`https://api.github.com/users/${this.state.githubUser}/followers`)
       .then(response => {
         return response.json();
       })
@@ -37,12 +37,37 @@ class App extends React.Component {
       })
   }
 
+  // componentDidUpdate() {
+  //   this.handleChange()
+  // }
+
+  handleChange = (e) => {
+    this.setState({ e.value.target })
+    console.log(this.state.githubUser)
+  }
+
+  // submitItem = e => {
+  //   e.preventDefault();
+  //   this.setState({
+  //     item: ''
+  //   })
+  // };
 
   render() {
     return (
       <div className="App">
-        <Header />
-        {console.log(this.state.gitFriends)}
+        <h1>Put a Search bar in here </h1>
+
+
+
+        <form onSubmit={this.submitItem}>
+          <input
+            type="text"
+            value={this.state.item}
+            name="githubUser"
+            onChange={this.handleChanges}
+          />
+        </form>
         <GitCard data={this.state.gitCard} />
         <h2 className="mid_bar">Github Friends</h2>
         <div className="flex_wrap">
