@@ -37,21 +37,19 @@ class App extends React.Component {
       })
   }
 
-  // componentDidUpdate() {
-  //   this.handleChange()
-  // }
 
   handleChange = (e) => {
-    this.setState({ e.value.target })
-    console.log(this.state.githubUser)
+    this.setState({ githubUser: e.target.value })
   }
 
-  // submitItem = e => {
-  //   e.preventDefault();
-  //   this.setState({
-  //     item: ''
-  //   })
-  // };
+  submitItem = e => {
+    e.preventDefault();
+    if (this.state.githubUser === "") {
+      return
+    } else {
+      this.fetchGitCard();
+    }
+  };
 
   render() {
     return (
@@ -60,13 +58,13 @@ class App extends React.Component {
 
 
 
-        <form onSubmit={this.submitItem}>
+        <form onChange={this.handleChange}>
           <input
             type="text"
             value={this.state.item}
             name="githubUser"
-            onChange={this.handleChanges}
           />
+          <button onClick={this.submitItem}>Submit</button>
         </form>
         <GitCard data={this.state.gitCard} />
         <h2 className="mid_bar">Github Friends</h2>
